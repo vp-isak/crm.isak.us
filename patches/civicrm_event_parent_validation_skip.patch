@@ -1,0 +1,15 @@
+diff --git a/CRM/Event/Form/Registration.php b/CRM/Event/Form/Registration.php
+index 5c04f7d..27e3353 100644
+--- a/CRM/Event/Form/Registration.php
++++ b/CRM/Event/Form/Registration.php
+@@ -1547,6 +1547,10 @@ class CRM_Event_Form_Registration extends CRM_Core_Form {
+ 
+       //validate for price field selection.
+       if (empty($fieldSelected[$pNum])) {
++        $session = CRM_Core_Session::singleton();
++        if ($pNum == 0 && $session->get('event_skip_main_parent')) {
++          continue;
++        }
+         $errors[$pNum]['_qf_default'] = ts('SELECT at least one OPTION FROM EVENT Fee(s).');
+       }
+     }

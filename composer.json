@@ -79,7 +79,9 @@
         "sort-packages": true
     },
     "extra": {
-          "merge-plugin": {
+        "enable-patching": true,
+        "composer-exit-on-patch-failure": true,
+        "merge-plugin": {
             "include": [
                 "web/modules/contrib/webform/composer.libraries.json"
             ]
@@ -90,10 +92,10 @@
             }
         },
         "merge-plugin": {
-    "include": [
-        "drupal/modules/contrib/webform/composer.libraries.json"
-    ]
-},
+            "include": [
+                "drupal/modules/contrib/webform/composer.libraries.json"
+            ]
+        },
         "installer-paths": {
             "core": [
                 "type:drupal-core"
@@ -143,6 +145,11 @@
                 "  * Remove the plugin that prints this message:",
                 "      composer remove drupal/core-project-message"
             ]
+        },
+        "patches": {
+            "civicrm/civicrm-core": {
+                "CiviCRM Event Patch for Validation skip for Parent": "patches/civicrm_event_parent_validation_skip.patch"
+            }
         }
     },
     "require-dev": {
